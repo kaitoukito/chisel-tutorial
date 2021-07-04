@@ -5,8 +5,8 @@ circuit RealGCD :
     input reset : UInt<1>
     output io : {flip in : {flip ready : UInt<1>, valid : UInt<1>, bits : {a : UInt<16>, b : UInt<16>}}, out : {valid : UInt<1>, bits : UInt<16>}}
     
-    reg x : UInt, clock @[RealGCD.scala 23:14]
-    reg y : UInt, clock @[RealGCD.scala 24:14]
+    reg x : UInt<16>, clock with : (reset => (reset, UInt<16>("h00"))) @[RealGCD.scala 23:18]
+    reg y : UInt<16>, clock with : (reset => (reset, UInt<16>("h00"))) @[RealGCD.scala 24:18]
     reg busy : UInt<1>, clock with : (reset => (reset, UInt<1>("h00"))) @[RealGCD.scala 25:21]
     node _T = and(io.in.valid, io.in.ready) @[RealGCD.scala 27:21]
     when _T : @[RealGCD.scala 27:37]

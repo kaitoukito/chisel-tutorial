@@ -13,8 +13,8 @@ module RealGCD(
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
 `endif // RANDOMIZE_REG_INIT
-  reg [15:0] x; // @[RealGCD.scala 23:14]
-  reg [15:0] y; // @[RealGCD.scala 24:14]
+  reg [15:0] x; // @[RealGCD.scala 23:18]
+  reg [15:0] y; // @[RealGCD.scala 24:18]
   reg  busy; // @[RealGCD.scala 25:21]
   wire  _T = io_in_valid & io_in_ready; // @[RealGCD.scala 27:21]
   wire  _GEN_2 = io_out_valid ? 1'h0 : busy; // @[RealGCD.scala 34:30]
@@ -74,7 +74,9 @@ end // initial
 `endif
 `endif // SYNTHESIS
   always @(posedge clock) begin
-    if (busy) begin
+    if (reset) begin
+      x <= 16'h0;
+    end else if (busy) begin
       if (_T_2) begin
         x <= y;
       end else if (_T) begin
@@ -83,7 +85,9 @@ end // initial
     end else if (_T) begin
       x <= io_in_bits_a;
     end
-    if (busy) begin
+    if (reset) begin
+      y <= 16'h0;
+    end else if (busy) begin
       if (_T_2) begin
         y <= x;
       end else begin

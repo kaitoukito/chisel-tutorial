@@ -20,8 +20,8 @@ class RealGCD extends Module {
   })
 
   // Implement below ----------
-  val x = Reg(UInt())
-  val y = Reg(UInt())
+  val x = RegInit(0.U(io.out.bits.getWidth.W))  // instead of Reg(UInt())
+  val y = RegInit(0.U(io.out.bits.getWidth.W))  // instead of Reg(UInt())
   val busy = RegInit(false.B)
 
   when (io.in.valid && io.in.ready) { // handshake
