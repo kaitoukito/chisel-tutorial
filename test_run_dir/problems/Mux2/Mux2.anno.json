@@ -1,0 +1,37 @@
+[
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~Mux2|Mux2>io_out",
+    "sources":[
+      "~Mux2|Mux2>io_sel",
+      "~Mux2|Mux2>io_in1",
+      "~Mux2|Mux2>io_in0"
+    ]
+  },
+  {
+    "class":"logger.LogLevelAnnotation",
+    "globalLogLevel":{
+      
+    }
+  },
+  {
+    "class":"firrtl.options.TargetDirAnnotation",
+    "directory":"test_run_dir/problems/Mux2"
+  },
+  {
+    "class":"firrtl.stage.phases.DriverCompatibility$TopNameAnnotation",
+    "topName":"Mux2"
+  },
+  {
+    "class":"firrtl.options.OutputAnnotationFileAnnotation",
+    "file":"Mux2"
+  },
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"test_run_dir/problems/Mux2"
+  }
+]
