@@ -18,12 +18,37 @@ class VendingMachine extends Module {
     val dime   = Input(Bool())
     val valid  = Output(Bool())
   })
+
+  // Enum(5) means the number of states is 5.
+  // '::' is concatenate operator, lhs is val and rhs is list.
+  // Nil is an empty list.
   val sIdle :: s5 :: s10 :: s15 :: sOk :: Nil = Enum(5)
   val state = RegInit(sIdle)
 
   // Implement below ----------
+  when (state === sIdle) {
+    when (io.nickel) { state := s5  }
+    when (io.dime)   { state := s10 }
+  }
 
-  state := s5
+  when (state === s5) {
+    when (io.nickel) { state := s10 }
+    when (io.dime)   { state := s15 }
+  }
+
+  when (state === s10) {
+    when (io.nickel) { state := s15 }
+    when (io.dime)   { state := sOk }
+  }
+
+  when (state === s15) {
+    when (io.nickel) { state := sOk }
+    when (io.dime)   { state := sOk }
+  }
+
+  when (state === sOk) {
+    state := sIdle
+  }
 
   // Implement above ----------
 
