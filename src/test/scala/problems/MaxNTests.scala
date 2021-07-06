@@ -12,12 +12,14 @@ class MaxNTests(c: MaxN) extends PeekPokeTester(c) {
     var mx = 0
     for (i <- 0 until c.n) {
       // Implement below ----------
-      poke(c.io.ins(0), 0)
+      var tmp = rnd.nextInt(1 << c.w)
+      poke(c.io.ins(i), tmp)
+      mx = if (tmp > mx) tmp else mx
       // Implement above ----------
     }
     step(1)
     // Implement below ----------
-    expect(c.io.out, 1)
+    expect(c.io.out, mx)
     // Implement above ----------
   }
 }
